@@ -19,7 +19,7 @@ window.onload = function() {
 
 function addDucks() {}
 	ducks = [];
-	for (let i = 0; i < duckCount; i++) {
+	for (let i = 0; i < duckCount; i++) { }
 let duckImageName = duckImageNames[Math.floor(Math.random()*2)]; //0-1 
 
 let duckImage = document.createElement("img"); //<img>
@@ -28,6 +28,17 @@ let duckImage = document.createElement("img"); //<img>
 	duckImage.height = duckHeight;
 	duckImage.draggable = false; 
 	duckImage.style.position = "absolute";
+	duckImage.onclick = function() {
+document.body.removeChild(this);
+let remainingDucks = [];
+for (let i = 0; i < ducks.length; i++) {
+	if (ducks[i].image != this) {
+		remainingDucks.push(ducks[i]);
+	}
+}
+ducks = remainingDucks;
+}
+
 	document.body.appendChild(duckImage);  
 
 	let duck = {
@@ -37,6 +48,7 @@ let duckImage = document.createElement("img"); //<img>
 		velocityX: duckVelocityX, 
 		velocityY: duckVelocityY
 	}
+
 
 		duck.image.style.left = String(duck.x) + "px"; //x position 
 		duck.image.style.top = String(duck.y) + "px"; //y position
@@ -48,7 +60,7 @@ let duckImage = document.createElement("img"); //<img>
 		ducks.push(duck); 
 
   
-	}
+	
 	
 function moveDucks() {
 	for (let i = 0; i < ducks.length; i++) {
